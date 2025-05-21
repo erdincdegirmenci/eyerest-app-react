@@ -1,11 +1,13 @@
 const { app, BrowserWindow, Tray, Menu, nativeImage, ipcMain, Notification } = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
+const { translations } = require('./src/i18n');
 
 const iconPath = path.join(__dirname, 'public', 'mainicon.png');
 
 let mainWindow;
 let tray = null;
+let currentLanguage = 'tr'; // Default language
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -59,17 +61,21 @@ function createWindow() {
   }
 }
 
+function updateTrayMenu() {
+  const contextMenu = Menu.buildFromTemplate([
+    { label: translations[currentLanguage].mainScreen, click: () => mainWindow.show() },
+    { label: translations[currentLanguage].quit, click: () => app.quit() },
+  ]);
+  tray.setContextMenu(contextMenu);
+}
+
 app.whenReady().then(() => {
   createWindow();
 
   // Tray icon
   tray = new Tray(nativeImage.createFromPath(iconPath));
-  const contextMenu = Menu.buildFromTemplate([
-    { label: 'Göster', click: () => mainWindow.show() },
-    { label: 'Çıkış', click: () => app.quit() },
-  ]);
+  updateTrayMenu();
   tray.setToolTip('EyeRest');
-  tray.setContextMenu(contextMenu);
 
   tray.on('click', () => {
     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
@@ -142,4 +148,10 @@ ipcMain.on('show-app-window', () => {
 
 ipcMain.on('hide-app', () => {
   if (mainWindow) mainWindow.hide();
+});
+
+// Add language change handler
+ipcMain.on('change-language', (event, lang) => {
+  currentLanguage = lang;
+  updateTrayMenu();
 });
