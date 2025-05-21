@@ -32,6 +32,8 @@ function App() {
   const [language, setLanguage] = useState('tr');
   const t = translations[language];
 
+  const { ipcRenderer } = window.require('electron');
+
   useEffect(() => {
     if (screen !== 'main') return;
     if (!endTime) return;
@@ -124,9 +126,10 @@ function App() {
     }
   }
 
-  function handleLanguageSwap(lang) {
-    setLanguage(lang);
-  }
+  const handleLanguageChange = (newLang) => {
+    setLanguage(newLang);
+    ipcRenderer.send('change-language', newLang);
+  };
 
   return (
     <div style={{
@@ -169,7 +172,7 @@ function App() {
             setScreen={setScreen}
             setMenuOpen={setMenuOpen}
             language={language}
-            onLanguageSwap={handleLanguageSwap}
+            onLanguageSwap={handleLanguageChange}
             t={t}
           />
         </>
