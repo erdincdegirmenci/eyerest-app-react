@@ -1,10 +1,10 @@
 # EyeRest App
 
-[🇹🇷 Türkçe](#türkçe) | [🇬🇧 English](#english)
+[🇹🇷 Türkçe](#turkce) | [🇬🇧 English](#english)
 
 ---
 
-## 🇹🇷 Türkçe
+## <a id="turkce"></a>🇹🇷 Türkçe
 
 Göz sağlığınız için düzenli mola vermenizi hatırlatan, çok dilli (Türkçe/İngilizce) ve modern bir masaüstü uygulaması.
 
@@ -52,7 +52,7 @@ Göz sağlığınız için düzenli mola vermenizi hatırlatan, çok dilli (Tür
 
 ---
 
-## 🇬🇧 English
+## <a id="english"></a>🇬🇧 English
 
 A modern desktop application that reminds you to take regular breaks for your eye health, featuring multilingual support (Turkish/English).
 
