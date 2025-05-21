@@ -55,8 +55,4 @@ Göz sağlığınız için düzenli mola vermenizi hatırlatan, çok dilli (Tür
 ---
 
 
-## Lisans / License
-
-MIT
-
----
+## Lisans / License MIT
