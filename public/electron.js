@@ -1,12 +1,27 @@
 const { app, BrowserWindow, Tray, Menu, nativeImage, ipcMain, Notification } = require('electron');
 const path = require('path');
 const isDev = process.env.NODE_ENV === 'development' || process.env.ELECTRON_IS_DEV === '1' || !app.isPackaged;
-const { translations } = require('../src/i18n');
+
+// Çeviri nesnesi doğrudan burada
+const translations = {
+  tr: {
+    mainScreen: "Ana Ekran",
+    quit: "Çıkış"
+  },
+  en: {
+    mainScreen: "Main Screen",
+    quit: "Quit"
+  }
+};
 
 // Icon yolunu hem dev hem de prod için ayarla
 const iconPath = isDev 
   ? path.join(__dirname, 'mainicon.ico')
   : path.join(__dirname, '../build/mainicon.ico');
+
+// Tray icon için native image oluştur
+const trayIcon = nativeImage.createFromPath(iconPath);
+trayIcon.setTemplateImage(true);
 
 let mainWindow;
 let tray = null;
@@ -20,7 +35,7 @@ function createWindow() {
     roundedCorners: true,
     frame: false,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
       contextIsolation: true,
       enableRemoteModule: false,
       preload: path.join(__dirname, 'preload.js')
@@ -32,6 +47,7 @@ function createWindow() {
   });
 
   console.log('isDev', isDev);
+
   mainWindow.loadURL(
     isDev
       ? 'http://localhost:3000'
@@ -43,6 +59,7 @@ function createWindow() {
   });
 
   mainWindow.on('closed', () => (mainWindow = null));
+
   // Maximize ve resize olaylarını engelle
   mainWindow.on('maximize', (e) => {
     mainWindow.unmaximize();
@@ -56,6 +73,7 @@ function createWindow() {
   mainWindow.on('leave-full-screen', (e) => {
     mainWindow.setFullScreen(false);
   });
+
   // Windows'ta çift tıklama ile maximize'ı engelle
   if (process.platform === 'win32' && mainWindow.hookWindowMessage) {
     mainWindow.hookWindowMessage(0x00A3, () => {
@@ -76,7 +94,7 @@ app.whenReady().then(() => {
   createWindow();
 
   // Tray icon
-  tray = new Tray(nativeImage.createFromPath(iconPath));
+  tray = new Tray(trayIcon);
   updateTrayMenu();
   tray.setToolTip('EyeRest');
 

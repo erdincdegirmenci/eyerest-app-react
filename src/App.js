@@ -87,6 +87,7 @@ function App() {
   const handleRested = () => {
     setScreen('main');
     handleStart();
+    handleQuit();
   };
 
   const handleSaveSettings = () => {

@@ -1,6 +1,6 @@
 {
   "name": "eyerest",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "EyeRest - Desktop App",
   "author": "Erdinç Değirmenci",
@@ -16,14 +16,35 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "copy-icon": "copy public\\mainicon.ico build\\mainicon.ico",
     "electron": "concurrently \"npm start\" \"wait-on http://localhost:3000 && npx electron .\"",
-    "electron-build": "npm run build && electron-builder"
+    "package-win": "npm run build && npm run copy-icon && electron-packager . EyeRest --overwrite --asar --platform=win32 --arch=x64 --out=release-builds --icon=build/mainicon.ico --prune=true --electron-version=36.2.1"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "main": "public/electron.js",
+  "build": {
+    "appId": "com.eyerest.app",
+    "productName": "EyeRest",
+    "icon": "build/mainicon.ico",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "build/**/*",
+      "public/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/mainicon.ico",
+      "signAndEditExecutable": false,
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "shortcutName": "EyeRest",
+      "installerIcon": "build/mainicon.ico",
+      "uninstallerIcon": "build/mainicon.ico",
+      "installerHeaderIcon": "build/mainicon.ico"
+    }
   },
   "browserslist": {
     "production": [
@@ -36,31 +57,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "concurrently": "^9.1.2",
-    "electron": "^36.2.1",
-    "electron-builder": "^24.9.1",
-    "electron-is-dev": "^3.0.1",
-    "wait-on": "^8.0.3"
-  },
-  "main": "public/electron.js",
-  "build": {
-    "appId": "com.eyerest.app",
-    "productName": "EyeRest",
-    "directories": {
-      "output": "dist"
-    },
-    "files": [
-      "build/**/*",
-      "public/**/*",
-      "package.json"
-    ],
-    "win": {
-      "target": "nsis",
-      "icon": "public/mainicon.ico",
-      "signAndEditExecutable": false,
-      "requestedExecutionLevel": "asInvoker"
-    }
   }
 }
