@@ -1,5 +1,5 @@
 #  ![image (1)](https://github.com/user-attachments/assets/4eb88a28-4b1f-4666-845d-0ea46c25afcb) EyeRest App 
-### [https://erdincdegirmenci.github.io/eyerest-app-react/]
+### [https://erdincdegirmenci.github.io/react-eyerest-app/]
 
 [🇹🇷 Türkçe](#turkce) | [🇬🇧 English](#english)
 
@@ -9,7 +9,7 @@
 
 Göz sağlığınız için düzenli mola vermenizi hatırlatan, çok dilli (Türkçe/İngilizce) ve modern bir masaüstü uygulaması.
 
-[GitHub Repo](https://github.com/erdincdegirmenci/eyerest-app-react.git)
+[GitHub Repo](https://erdincdegirmenci.github.io/react-eyerest-app/)
 
 ### Özellikler
 
