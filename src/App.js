@@ -32,7 +32,8 @@ function App() {
   const [language, setLanguage] = useState('tr');
   const t = translations[language];
 
-  const { ipcRenderer } = window.require('electron');
+  // Electron API'sini güvenli bir şekilde kullan
+  const electron = window.electron;
 
   useEffect(() => {
     if (screen !== 'main') return;
@@ -72,9 +73,8 @@ function App() {
     setTimer(interval);
     setEndTime(null);
     setIsBreakActive(false);
-    if (window.require) {
-      const { ipcRenderer } = window.require('electron');
-      ipcRenderer.send('hide-app');
+    if (electron) {
+      electron.send('hide-app');
     }
   };
 
@@ -113,22 +113,22 @@ function App() {
   }
 
   function showAppWindow() {
-    if (window.require) {
-      const { ipcRenderer } = window.require('electron');
-      ipcRenderer.send('show-app-window');
+    if (electron) {
+      electron.send('show-app-window');
     }
   }
 
   function handleQuit() {
-    if (window.require) {
-      const { ipcRenderer } = window.require('electron');
-      ipcRenderer.send('hide-app');
+    if (electron) {
+      electron.send('hide-app');
     }
   }
 
   const handleLanguageChange = (newLang) => {
     setLanguage(newLang);
-    ipcRenderer.send('change-language', newLang);
+    if (electron) {
+      electron.send('change-language', newLang);
+    }
   };
 
   return (

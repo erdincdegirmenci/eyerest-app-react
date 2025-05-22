@@ -1,9 +1,12 @@
 const { app, BrowserWindow, Tray, Menu, nativeImage, ipcMain, Notification } = require('electron');
-const isDev = require('electron-is-dev');
 const path = require('path');
-const { translations } = require('./src/i18n');
+const isDev = process.env.NODE_ENV === 'development' || process.env.ELECTRON_IS_DEV === '1' || !app.isPackaged;
+const { translations } = require('../src/i18n');
 
-const iconPath = path.join(__dirname, 'public', 'mainicon.png');
+// Icon yolunu hem dev hem de prod için ayarla
+const iconPath = isDev 
+  ? path.join(__dirname, 'mainicon.ico')
+  : path.join(__dirname, '../build/mainicon.ico');
 
 let mainWindow;
 let tray = null;
@@ -18,21 +21,21 @@ function createWindow() {
     frame: false,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false,
+      contextIsolation: true,
+      enableRemoteModule: false,
+      preload: path.join(__dirname, 'preload.js')
     },
     show: false,
     autoHideMenuBar: true,
     backgroundColor: '#eaf6f7',
     icon: iconPath,
   });
-  mainWindow.setMaximizable(false);
-  mainWindow.setFullScreenable(false);
-  mainWindow.setMinimizable(false);
 
+  console.log('isDev', isDev);
   mainWindow.loadURL(
     isDev
       ? 'http://localhost:3000'
-      : `file://${path.join(__dirname, 'build/index.html')}`
+      : `file://${path.join(__dirname, '../build/index.html')}`
   );
 
   mainWindow.once('ready-to-show', () => {
@@ -97,7 +100,7 @@ ipcMain.on('show-break-notification', (event, data) => {
   const notification = new Notification({
     title: data.title || 'EyeRest',
     body: data.message || 'Gözlerini dinlendirme zamanı!',
-    icon: data.icon || path.join(__dirname, 'public', 'icon.png'),
+    icon: data.icon || path.join(__dirname, 'public', 'mainicon2.png'),
     silent: false,
     urgency: 'high',
     timeoutType: 'default',

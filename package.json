@@ -2,12 +2,12 @@
   "name": "eyerest",
   "version": "0.1.0",
   "private": true,
+  "description": "EyeRest - Desktop App",
+  "author": "Erdinç Değirmenci",
+  "homepage": "./",
   "dependencies": {
-    "cra-template-pwa": "2.0.0",
-    "react": "^19.1.0",
-    "react-color": "^2.19.3",
-    "react-colorful": "^5.6.1",
-    "react-dom": "^19.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^5.0.1"
   },
@@ -16,7 +16,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron": "concurrently \"npm start\" \"wait-on http://localhost:3000 && npx electron .\""
+    "electron": "concurrently \"npm start\" \"wait-on http://localhost:3000 && npx electron .\"",
+    "electron-build": "npm run build && electron-builder"
   },
   "eslintConfig": {
     "extends": [
@@ -39,8 +40,27 @@
   "devDependencies": {
     "concurrently": "^9.1.2",
     "electron": "^36.2.1",
+    "electron-builder": "^24.9.1",
     "electron-is-dev": "^3.0.1",
     "wait-on": "^8.0.3"
   },
-  "main": "main.js"
+  "main": "public/electron.js",
+  "build": {
+    "appId": "com.eyerest.app",
+    "productName": "EyeRest",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "build/**/*",
+      "public/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "public/mainicon.ico",
+      "signAndEditExecutable": false,
+      "requestedExecutionLevel": "asInvoker"
+    }
+  }
 }
