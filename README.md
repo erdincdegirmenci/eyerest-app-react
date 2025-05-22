@@ -1,7 +1,6 @@
 # EyeRest App 
-![image](https://github.com/user-attachments/assets/c3a8709e-261f-4a31-9738-0589c62cbe1c)
-
 ### [https://erdincdegirmenci.github.io/eyerest-app-react/]
+![image (1)](https://github.com/user-attachments/assets/4eb88a28-4b1f-4666-845d-0ea46c25afcb)
 
 [🇹🇷 Türkçe](#turkce) | [🇬🇧 English](#english)
 
