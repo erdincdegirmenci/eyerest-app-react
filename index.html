@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EyeRest - Göz Sağlığınız İçin Masaüstü Uygulaması</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #eaf6f7 0%, #ffffff 100%);
+            border-radius: 0 0 2rem 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: #e2e8f0;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 2rem 0;
+            position: relative;
+            width: 50%;
+            margin-left: auto;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #6ec6ca;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -60px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: -60px;
+        }
+
+        .timeline-content h2 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .timeline-content p {
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content img {
+            width: 100%;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #4a5568;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #6ec6ca;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #5ab5b9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #2d3748;
+            color: white;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+            }
+
+            .timeline-content::before {
+                left: -60px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="public/mainicon.png" alt="EyeRest Logo" class="logo">
+        <h1>EyeRest</h1>
+        <p class="subtitle">A modern desktop app that reminds you to take regular breaks for your eye health.</p>
+    </header>
+
+    <div class="container">
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h2>1. Installation</h2>
+                    <p>To start using EyeRest, follow these steps:</p>
+                    <ol>
+                        <li>
+                            Go to the <b>GitHub Releases</b> page:<br>
+                            <a href="https://github.com/erdincdegirmenci/eyerest-app-react/releases/tag/v.1.0.0" target="_blank">Releases - EyeRest v.1.0.0</a>
+                        </li>
+                        <li>
+                            Download the <b>eyerest-app-react.zip</b> file and extract it to a folder on your computer.
+                        </li>
+                        <li>
+                            Double-click the <b>EyeRest.exe</b> file inside the folder to launch the application.
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h2>2. Main Screen</h2>
+                    <p>When you open the app, you will see the main screen. Here you can start the timer or skip the break.</p>
+                    <img src="src/img/main-screen.png" alt="Main Screen">
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h2>3. Menu</h2>
+                    <p>Click the three dots icon at the top right to access settings, language options, and quit the app.</p>
+                    <img src="src/img/menu-screen.png" alt="Menu Screen">
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h2>4. Time Settings</h2>
+                    <p>In the "Time settings" section, you can set the break interval. Enter the duration in minutes and save.</p>
+                    <img src="src/img/time-settings.png" alt="Time Settings Screen">
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h2>5. Theme Selection</h2>
+                    <p>In the "Theme settings" section, you can change the app's color theme. Choose one of the color options.</p>
+                    <img src="src/img/theme-settings.png" alt="Theme Settings Screen">
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h2>6. Break Screen</h2>
+                    <p>When it's time for a break, suggestions for resting your eyes will be shown. Click the "Rested, start timer again!" button to restart the timer.</p>
+                    <img src="src/img/break-screen.png" alt="Break Screen">
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>Timer</h3>
+                <p>Break reminders to help you rest your eyes at regular intervals.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Theme Selection</h3>
+                <p>Personalized experience with different color themes.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Multi-language</h3>
+                <p>Support for Turkish and English languages.</p>
+            </div>
+            <div class="feature-card">
+                <h3>System Tray</h3>
+                <p>Windows system tray (tray) support.</p>
+            </div>
+        </div>
+
+        <div class="cta">
+            <a href="https://github.com/erdincdegirmenci/eyerest-app-react" class="cta-button">View on GitHub</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>EyeRest - Desktop App for Your Eye Health</p>
+        <p>MIT License</p>
+    </footer>
+</body>
+</html> 
