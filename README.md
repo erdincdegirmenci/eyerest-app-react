@@ -1,4 +1,5 @@
 # EyeRest App
+![mainicon](https://github.com/user-attachments/assets/45532878-b3af-450b-9783-c89de77381b3)
 
 [🇹🇷 Türkçe](#turkce) | [🇬🇧 English](#english)
 
